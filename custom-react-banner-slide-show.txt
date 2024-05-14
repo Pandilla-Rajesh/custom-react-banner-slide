@@ -1,0 +1,97 @@
+ 
+
+const BannerSlider= () => { 
+   const [listSlides, setlistSlides] = useState(); 
+   let slides = [ 
+     { 
+       id: 1, 
+       bannerimg: "https://www.onpassive.com/wp-content/themes/onpassive-153/img/home/home-banner-img.png", 
+       show: false 
+     }, 
+     { 
+       id: 2, 
+       bannerimg: "https://www.onpassive.com/wp-content/themes/onpassive-153/img/home/unleash-1.png", 
+       show: false 
+     }, 
+     { 
+       id: 3, 
+       bannerimg: "https://www.onpassive.com/wp-content/themes/onpassive-153/img/home/human.png", 
+       show: false 
+     }, 
+     { 
+       id: 4, 
+       bannerimg: "https://www.onpassive.com/wp-content/themes/onpassive-153/img/home/OConnect.png", 
+       show: false 
+     } 
+   ] 
+   useEffect(() => { 
+     setlistSlides(slides); 
+   }, []); 
+   console.log(listSlides); 
+   const [indxval, setindxval] = useState(1); 
+   const [curent, setcurent] = useState(1); 
+   const [dis, setdisable] = useState(false); 
+   const [disprv, setdisableprv] = useState(false); 
+
+  
+
+  const prvhandal = () => { 
+     if (indxval === curent) { 
+       setdisableprv(true); 
+       setdisable(false) 
+     } else { 
+       setindxval(indxval - 1); 
+     } 
+   } 
+   const nexthandal = () => { 
+
+  
+
+    if (indxval == listSlides.length) { 
+       setdisable(true); 
+       setdisableprv(false); 
+     } else { 
+       setindxval(indxval + 1); 
+     } 
+
+  
+
+  } 
+
+  
+
+  return ( 
+<> 
+<div className='container'> 
+<div className='col-sm-12'> 
+           {listSlides && listSlides.slice(indxval - curent, indxval).map((slide, index) => { 
+             return ( 
+<> 
+<div key={index}> 
+<div style={{ height: "500px", overflow: 'hidden' }} > 
+<img className='w-100' src={slide.bannerimg} alt="" /> 
+</div> 
+</div> 
+</> 
+             ) 
+
+  
+
+          })} 
+<div className=' d-flex justify-content-center my-5'> 
+<button className='btn btn-danger me-4 ' onClick={prvhandal} disabled={disprv}>Prev</button> 
+<button className='btn btn-info' onClick={nexthandal} disabled={dis}>Next</button> 
+
+  
+
+          </div> 
+</div> 
+
+  
+
+      </div> 
+</> 
+   ) 
+} 
+
+ 
